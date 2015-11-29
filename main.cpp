@@ -5,6 +5,9 @@
 
 	Date: 30-11-15 02:38
 	Description: Triangle Control move, scale and Granzot draw 
+
+	Date: 30-11-15 03:01
+	Description: Granzot style modify add
 */
 
 
@@ -31,7 +34,8 @@ void setTriangleGLpos(float x0, float y0,
                     float x2, float y2);
 void EnableOpenGL (HWND hWnd, HDC *hDC, HGLRC *hRC);
 void DisableOpenGL (HWND hWnd, HDC hDC, HGLRC hRC);
-void star(float x_shift, float y_shift, float star_radius);
+void star5(float x_shift, float y_shift, float star_radius);
+void star6(float x_shift, float y_shift, float star_radius);
 
 HWND hWndGL;
 HDC hDCGL;
@@ -49,7 +53,7 @@ static HWND hwnd_st_sx, hwnd_ed_sx;
 static HWND hwnd_st_sy, hwnd_ed_sy;
 
 static HWND hwnd_bt_default, hwnd_bt_dxy, hwnd_bt_sxy;
-static HWND hwnd_bt_granjoe;
+static HWND hwnd_bt_granjoe5, hwnd_bt_granjoe6;
 
 float fx[3],fy[3], fsx, fsy;
 int winGLwidth;
@@ -166,6 +170,19 @@ void wtoc(CHAR* Dest, const WCHAR* Source)
         ++i;
     }
 }
+
+
+ float radius;
+ float radius2;
+
+ float small_radius;
+ float DEGINRAD;
+ int Nums;
+ float x_left;
+ float y_left;
+
+ float x_left2;
+ float y_left2;
 
 /********************
  * Window Procedure
@@ -349,9 +366,15 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message,
                                      x,y,w,h ,hWnd,(HMENU)2,g_hInst,NULL);
            //------------------------------------------------------------------------
            y += h+10; h=20;
-           x = winGLwidth+10; w = 80;
-           hwnd_bt_granjoe = CreateWindow("button","GranJoe",WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+           x = winGLwidth+10; w = 120;
+           hwnd_bt_granjoe5 = CreateWindow("button","GranJoe star5",WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
                                      x,y,w,h ,hWnd,(HMENU)3,g_hInst,NULL);
+
+           y += h+10; h=20;
+           x = winGLwidth+10; w = 120;
+           hwnd_bt_granjoe6 = CreateWindow("button","GranJoe star6",WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+                                     x,y,w,h ,hWnd,(HMENU)4,g_hInst,NULL);
+
 
         return 0;
         
@@ -433,17 +456,17 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message,
              }
             
              //우선 원부터 그리기
-             float radius=0.7;
-             float radius2=0.6;
+             radius=0.7;
+             radius2=0.6;
             
-             float small_radius=0.21;
-             float DEGINRAD=3.14159/180;
-             int Nums=360;
-             float x_left = 0.0;
-             float y_left = 0.1;
+             small_radius=0.21;
+             DEGINRAD=3.14159/180;
+             Nums=360;
+             x_left = 0.0;
+             y_left = 0.1;
             
-             float x_left2 = 0.01;
-             float y_left2 = 0.11;
+             x_left2 = 0.01;
+             y_left2 = 0.11;
 
             glClearColor (0.0f, 0.0f, 0.0f, 0.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -467,7 +490,73 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message,
             glEnd ();
            
             //별모양 그리는 함수
-            star(0.01,0.1,0.6); //0.063
+            star5(0.01,0.1,0.6); //0.063
+
+/*           
+            glBegin (GL_TRIANGLES);
+            glColor3f (1.0f, 0.0f, 0.0f);   glVertex2f (x0, y0);
+            glColor3f (0.0f, 1.0f, 0.0f);   glVertex2f (x1, y1);
+            glColor3f (0.0f, 0.0f, 1.0f);   glVertex2f (x2, y2);
+*/
+            glEnd ();
+            glPopMatrix ();
+
+            SwapBuffers (hDCGL);
+
+            //theta += 1.0f;
+            Sleep (1);
+
+
+               
+            break;
+
+        case 4: //그란죠 그리기
+             if(icntScale>0){
+               glScaled (1.0f /0.5f,1.0f/0.5f ,0.0f);
+               icntScale=0;
+             }
+            
+             if(icntScale>0){
+               glScaled (1.0f /0.5f,1.0f/0.5f ,0.0f);
+               icntScale=0;
+             }
+            
+             //우선 원부터 그리기
+             radius=0.7;
+             radius2=0.6;
+            
+             small_radius=0.21;
+             DEGINRAD=3.14159/180;
+             Nums=360;
+             x_left = 0.0;
+             y_left = 0.1;
+            
+             x_left2 = 0.01;
+             y_left2 = 0.11;
+
+            glClearColor (0.0f, 0.0f, 0.0f, 0.0f);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            glPushMatrix ();
+           
+            // 큰 원
+            glColor3f(1.0,1.0,1.0);
+            glBegin(GL_LINE_STRIP);
+            for (int i=0; i<=360;i++)  {
+               float degInRad=i*DEGINRAD;
+               glVertex2f(cos(degInRad)*radius + x_left, sin(degInRad)*radius + y_left);
+            }           
+            glEnd ();
+
+            // 작은 원
+            glBegin(GL_LINE_STRIP);
+            for (int i=0; i<=360;i++)  {
+               float degInRad=i*DEGINRAD;
+               glVertex2f(cos(degInRad)*radius2 + x_left2, sin(degInRad)*radius2 + y_left2);
+            }           
+            glEnd ();
+           
+            //별모양 그리는 함수
+            star6(0.01,0.1,0.6); //0.063
 
 /*           
             glBegin (GL_TRIANGLES);
@@ -526,7 +615,7 @@ void setTriangleGLpos(float x0, float y0,
 
 // 출처 : http://blog.naver.com/PostView.nhn?blogId=shimchan2&logNo=70009963396
 //삼각형 3개를 조합해서 별 만들기
-void star(float x_shift, float y_shift, float star_radius){
+void star5(float x_shift, float y_shift, float star_radius){
 // float star_radius=0.063;
  float DEGINRAD=3.14159/180;
  glColor3f(1.0,1.0,1.0);
@@ -539,6 +628,35 @@ void star(float x_shift, float y_shift, float star_radius){
   glVertex2f(cos((18+72 + 72+72)*DEGINRAD)*star_radius  + x_shift, sin((18+72 + 72+72)*DEGINRAD)*star_radius  + y_shift);
   glVertex2f(cos((18)*DEGINRAD)*star_radius  + x_shift, sin((18)*DEGINRAD)*star_radius  + y_shift);
  glEnd();
+}
+
+// 출처 : http://blog.naver.com/PostView.nhn?blogId=shimchan2&logNo=70009963396 
+//삼각형 3개를 조합해서 별 만들기
+void star6(float x_shift, float y_shift, float star_radius){
+// float star_radius=0.063;
+ float DEGINRAD=3.14159/180 * 5/6;
+ int gap;
+ glColor3f(1.0,1.0,1.0);
+ glBegin(GL_LINE_STRIP);
+  gap=-180; //18
+   // 별모양 그리기 각도 이미지 참고 : http://sexy.pe.kr/tc/archive/201304 
+  glVertex2f(cos(gap *DEGINRAD)*star_radius  + x_shift, sin(gap *DEGINRAD)*star_radius  + y_shift);
+  glVertex2f(cos((gap + 72+72)*DEGINRAD)*star_radius  + x_shift, sin((gap + 72+72)*DEGINRAD)*star_radius  + y_shift);
+  glVertex2f(cos((gap + 72+72 + 72+72)*DEGINRAD)*star_radius  + x_shift, sin((gap + 72+72+ 72+72)*DEGINRAD)*star_radius  + y_shift);
+  glVertex2f(cos((gap)*DEGINRAD)*star_radius  + x_shift, sin((gap)*DEGINRAD)*star_radius  + y_shift);
+ glEnd();
+
+ glBegin(GL_LINE_STRIP);
+ 
+   gap=180;
+   // 별모양 그리기 각도 이미지 참고 : http://sexy.pe.kr/tc/archive/201304 
+  glVertex2f(cos(gap *DEGINRAD)*star_radius  + x_shift, sin(gap *DEGINRAD)*star_radius  + y_shift);
+  glVertex2f(cos((gap + 72+72)*DEGINRAD)*star_radius  + x_shift, sin((gap + 72+72)*DEGINRAD)*star_radius  + y_shift);
+  glVertex2f(cos((gap + 72+72 + 72+72)*DEGINRAD)*star_radius  + x_shift, sin((gap + 72+72+ 72+72)*DEGINRAD)*star_radius  + y_shift);
+  glVertex2f(cos((gap)*DEGINRAD)*star_radius  + x_shift, sin((gap)*DEGINRAD)*star_radius  + y_shift);
+  
+ glEnd();
+ 
 }
 
 
