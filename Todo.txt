@@ -9,4 +9,5 @@ compile option : TDM-GCC 4.9.2 32-bit Release
 
 2. 돌아가는 삼각형을 중단시킴. 입력받은 문자로 삼각형 좌표 이동 테스트.
 
+3. 삼각형 move, scale 컨트롤. 그란죠 호출
 
