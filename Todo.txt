@@ -1,0 +1,8 @@
+comile tool : Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable
+http://sourceforge.net/projects/orwelldevcpp/files/Portable%20Releases/
+
+
+compile option : TDM-GCC 4.9.2 32-bit Release
+
+
+1. Dev-cpp opengl basic example : rotation Triangle
