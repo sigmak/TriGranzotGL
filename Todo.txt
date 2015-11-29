@@ -6,3 +6,7 @@ compile option : TDM-GCC 4.9.2 32-bit Release
 
 
 1. Dev-cpp opengl basic example : rotation Triangle
+
+2. 돌아가는 삼각형을 중단시킴. 입력받은 문자로 삼각형 좌표 이동 테스트.
+
+
