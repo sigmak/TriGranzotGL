@@ -14,3 +14,10 @@ compile option : TDM-GCC 4.9.2 32-bit Release
 4. 기존 그란죠를 5성으로 알고 그렸는데, 6성이라고 해서 다시 추가함.
 
 5. SubMp3 branch 사용하기
+
+6. SubMp3 기본 예제 작성 
+   mp3 를 위한 라이브러리 : http://sourceforge.net/projects/audiere/
+   audiere 사용을 위한 예제 : http://d.hatena.ne.jp/rinsyan0518/20111218/1324226234
+
+
+
