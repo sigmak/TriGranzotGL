@@ -13,4 +13,6 @@ compile option : TDM-GCC 4.9.2 32-bit Release
 
 4. 기존 그란죠를 5성으로 알고 그렸는데, 6성이라고 해서 다시 추가함.
 
-5. SubCalc 가지 작성
+5. SubCalc 가지 작성 및 초기화
+
+6. 계산기 원본 소스 컴파일 성공: https://www.daniweb.com/programming/software-development/code/216325/calculator-using-windows-gui
