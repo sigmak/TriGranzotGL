@@ -250,7 +250,7 @@
       if (!Style)
       {
           Style = WS_CHILD | WS_VISIBLE | ES_WANTRETURN |
-                  WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL;
+                  WS_VSCROLL | ES_MULTILINE | ES_AUTOVSCROLL | ES_AUTOHSCROLL|ES_RIGHT;
       }
       if (Exstyle==-1)
       {
@@ -296,8 +296,10 @@
     // details like corner coordinates,width,length,text,font
     void FormLoad (void)
       {
-        Form1 = BCX_Form("One op calculator ...",67,42,185,130);
-        Edit1 = BCX_Edit(SPACE,Form1,99,-1,3,200,20);
+        //Form1 = BCX_Form("One op calculator ...",67,42,185,130);
+        Form1 = BCX_Form("One op calculator ...",67,42,200,130);
+        //Edit1 = BCX_Edit(SPACE,Form1,99,-1,3,200,20);
+        Edit1 = BCX_Edit(SPACE,Form1,99,5,3,190,20);
         SendMessage(Edit1,(UINT)WM_SETFONT,(WPARAM)BCX_Set_Font("Verdana",14),1);
         BCX_Button("0",Form1,100,6,97,50,20);
         BCX_Button("1",Form1,101,6,74,20,20);
