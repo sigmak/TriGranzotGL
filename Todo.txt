@@ -20,5 +20,11 @@ devpacks : fltk-1.1.4.devpak
 
 6. Fltk 버튼 테스트 예제 작성.
 
+7. 디지털 시계 작성용 UI 구성
+   UI는 fluid 1.0.11 (사용법이 기억이 안남..ㅜ.ㅜ)
+   http://www.muquit.com/muquit/software/fluid_hack/fluid_hack.html#download
+   
+   fluid 작업후에 최종적으로 digital.h, digital.cxx, digital.fl 이렇게 파일 3개가 생성됨.
+
 
 
