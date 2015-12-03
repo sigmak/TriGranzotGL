@@ -18,7 +18,7 @@ devpacks : fltk-1.1.4.devpak
 
 5. SubFltk 가지 작성 및 초기화
 
-6. Fltk 버튼 테슽 예제 작성.
+6. Fltk 버튼 테스트 예제 작성.
 
 
 
