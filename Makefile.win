@@ -1,0 +1,33 @@
+# Project: SubFltk
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = SubFltk_private.res
+OBJ  = main.o $(RES)
+LINKOBJ  = main.o $(RES)
+LIBS =  -L"d:/dev_test/Dev-Cpp/lib" -mwindows -lfltk -lole32 -luuid -lcomctl32 -lwsock32 -lm  
+INCS =  -I"d:/dev_test/Dev-Cpp/include" 
+CXXINCS =  -I"d:/dev_test/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"d:/dev_test/Dev-Cpp/include/c++/3.4.2/backward"  -I"d:/dev_test/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"d:/dev_test/Dev-Cpp/include/c++/3.4.2"  -I"d:/dev_test/Dev-Cpp/include" 
+BIN  = SubFltk.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS) -DWIN32 -mms-bitfields  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before SubFltk.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "SubFltk.exe" $(LIBS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+
+SubFltk_private.res: SubFltk_private.rc 
+	$(WINDRES) -i SubFltk_private.rc --input-format=rc -o SubFltk_private.res -O coff 
