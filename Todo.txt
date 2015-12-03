@@ -1,4 +1,4 @@
-comile tool : Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable
+compile tool : Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable
 http://sourceforge.net/projects/orwelldevcpp/files/Portable%20Releases/
 
 
@@ -12,3 +12,10 @@ compile option : TDM-GCC 4.9.2 32-bit Release
 3. 삼각형 move, scale 컨트롤. 그란죠 호출
 
 4. 기존 그란죠를 5성으로 알고 그렸는데, 6성이라고 해서 다시 추가함.
+---------------------------------------------------------------
+compile tool : Dev-Cpp 4.9.9.2 
+devpacks : fltk-1.1.4.devpak
+
+5. SubFltk 가지 작성 및 초기화
+
+
